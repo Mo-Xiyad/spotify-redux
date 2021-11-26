@@ -49,13 +49,20 @@ class App extends React.Component {
         <div className="container-fluid">
           <Row>
             <Sidebar search={this.search} />
-            <Route
-              path="/"
-              exact
-              render={() => <Home searchResults={this.state.searchResults} />}
-            />
-            <Route path="/artist/:id" component={Artist} />
-            <Route path="/album/:id" component={Album} />
+            {
+              <>
+                userName ? &&
+                <Route
+                  path="/"
+                  exact
+                  render={() => (
+                    <Home searchResults={this.state.searchResults} />
+                  )}
+                />
+                <Route path="/artist/:id" component={Artist} />
+                <Route path="/album/:id" component={Album} />
+              </>
+            }
           </Row>
         </div>
         <Player />

@@ -4,6 +4,11 @@ export const GET_ALBUM_ERROR = "GET_ALBUM_ERROR";
 export const TOGGLE_LOADER = "TOGGLE_LOADER";
 export const SET_USERNAME = "SET_USERNAME";
 
+export const setUsernameAction = (name) => ({
+  type: SET_USERNAME,
+  payload: name,
+});
+
 export const getAlbumAction = (albumId) => {
   return async (dispatch) => {
     let headers = new Headers({
