@@ -68,5 +68,15 @@ export const setDefaultHome = (artistName, category) => {
 }
 
 
+export const likeOrUnlike = (element, dispatchName) => {
+    return async (dispatch) => {
+          dispatch({
+            type: dispatchName,
+            payload: element,
+        })
+}
+}
+
+
 
 

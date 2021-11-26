@@ -3,22 +3,28 @@ import AlbumCard from "./AlbumCard";
 import { Row, Col } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { setDefaultHome } from "../redux/actions";
+import { setDefaultHome, likeOrUnlike } from "../redux/actions";
 
 const mapStateToProps = (state) => ({
   searchArray: state.search.content,
   rockSongs: state.mainHomeContent.content.rockSongs,
   popSongs: state.mainHomeContent.content.popSongs,
   hipHopSongs: state.mainHomeContent.content.hipHopSongs,
+  likedSongs: state.likes.content,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setFreshHome: (string, category) => {
     dispatch(setDefaultHome(string, category));
   },
+  setLike: (element, dispatchName) => {
+    dispatch(likeOrUnlike(element, dispatchName));
+  },
 });
 
 const Home = ({
+  setLike,
+  likedSongs,
   searchArray,
   setFreshHome,
   rockSongs,
@@ -109,12 +115,18 @@ const Home = ({
       setFreshHome(hipHopRandomArtists[l], "SET_HIPHOP_SONGS");
     console.log("finish function");
     }
-
-
-   
-
-   
   }};
+
+  const toggleLike =(element)=> {
+ 
+    if (likedSongs.filter(el => el.id === element.id).length < 1 ) {
+        setLike(element, "LIKE")
+    } else {
+        setLike(element, "REMOVE_LIKE" )
+    }
+ 
+   };
+
 
   useEffect(() => {
     setHome();
@@ -138,7 +150,7 @@ const Home = ({
               <h2>Search Results</h2>
               <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                 {searchArray.map((song) => (
-                  <AlbumCard song={song} key={song.id} />
+                  <AlbumCard song={song} key={song.id} onClick={() => toggleLike(song)} />
                 ))}
               </Row>
             </div>
@@ -156,7 +168,7 @@ const Home = ({
                   id="rockSection"
                 >
                   {rockSongs.map((song) => (
-                    <AlbumCard song={song} key={song.id} />
+                    <AlbumCard song={song} key={song.id} onClick={() => toggleLike(song)} />
                   ))}
                 </Row>
               </div>
