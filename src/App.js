@@ -51,7 +51,7 @@ class App extends React.Component {
             <Sidebar search={this.search} />
             {
               <>
-                userName ? &&
+                {/* userName ? && */}
                 <Route
                   path="/"
                   exact
