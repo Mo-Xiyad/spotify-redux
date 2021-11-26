@@ -1,5 +1,6 @@
 export const FETCH_DATA_WITH_ID = "FETCH_DATA_WITH_ID";
 export const GET_ALL_SONGS = "GET_ALL_SONGS";
+const SET_SEARCH = "SET_SEARCH"
 
 
 //headers are consistent and needed for fetching
@@ -10,32 +11,30 @@ let headers = new Headers({
 
 
 
-  export const fetchSearch = (url) => {
-    // do fetch stuff
-   return async (dispatch) => {
-       console.log("THIS IS THE URL",url)
 
-        dispatch({
-          type: "TOGGLE_LOADER",
-          payload: true,
-        })
-    const response = await fetch(url);
-      if (response.ok) {
-        const data = await response.json();
-        console.log("HERE IS THE FETCHED DATA :", data);
-        const spreadData = [...data.data]
-         await dispatch({
-            type:'SET_JOBS',
-            payload: spreadData
-        });
-        setTimeout(() => {
-          dispatch({
-            type: "TOGGLE_LOADER",
-            payload: false,
-          })
-        }, 1000)
-      } else {
-        console.log("ERROR: could not fetch data");
+export const fetchSearch = (string) => {
+    return async (dispatch) => {
+try {
+    const response = await fetch(
+      "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
+        string,
+      {
+        method: "GET",
+        headers,
       }
-   }
-};
+    )
+    if (response.ok){
+        const result = await response.json()
+        const songs = result.data
+        dispatch({
+            type: SET_SEARCH,
+            payload: songs,
+        })
+    } else {
+        console.log("ERROR: problem with fetch")
+    }
+  } catch (err) {
+    console.log("ERROR: could not fetch search", err);
+  }
+}
+}

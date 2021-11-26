@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-const Sidebar = ({search}) => {
+const Sidebar = ({search, searchArray}) => {
   const [searchInput, setSearchInput] = useState();
 
   const params = useParams
@@ -65,7 +65,7 @@ const Sidebar = ({search}) => {
                     Library
                   </Link>
                 </li>
-                {params === "/" && (
+                {search && (
                   <li>
                     <div className="input-group mt-3">
                       <input

@@ -34,22 +34,7 @@ const App = ({searchForQuery}) => {
 
   const search = async (string) => {
     if (string.length > 2) {
-      try {
-        let response = await fetch(
-          "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
-            string,
-          {
-            method: "GET",
-            headers,
-          }
-        );
-
-        let result = await response.json();
-        let songs = result.data;
-          setSearchResults(songs)
-      } catch (err) {
-        console.log(err);
-      }
+      searchForQuery(string)
     }
   };
 
@@ -72,4 +57,4 @@ const App = ({searchForQuery}) => {
     );
 }
 
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
