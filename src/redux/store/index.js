@@ -15,6 +15,7 @@ export const initialState = {
     isError: false,
   },
   specificAlbumArray: {
+    album: {},
     content: [],
     isLoading: true,
     isError: false,
