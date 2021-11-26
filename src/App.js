@@ -10,6 +10,7 @@ import Album from "./components/Album";
 import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import { fetchSearch } from "./redux/actions";
+import Liked from "./components/Liked";
 let headers = new Headers({
   "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
   "X-RapidAPI-Key": "222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20",
@@ -50,6 +51,7 @@ const App = ({searchForQuery}) => {
             />
             <Route path="/artist/:id" component={Artist} />
             <Route path="/album/:id" component={Album} />
+            <Route path="/liked" component={Liked} />
           </Row>
         </div>
         <Player />

@@ -97,6 +97,11 @@ const Sidebar = ({search, searchArray}) => {
                     </div>
                   </li>
                 )}
+                <li>
+                  <Link to="/liked" className="nav-item nav-link">
+                    <i className="bi bi-heart sidebar-liked"></i>&nbsp; liked
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>

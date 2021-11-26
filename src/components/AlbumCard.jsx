@@ -29,7 +29,7 @@ const AlbumCard = ({ song, setLike, likedSongs }) => {
         className={
           likedSongs.filter((el) => el.id === song.id).length > 0
             ? "bi bi-heart-fill like-heart"
-            : "bubble bi bi-heart"
+            : "bubble bi bi-heart like-heart"
         }
         onClick={() => toggleLike(song)}
       ></i>
