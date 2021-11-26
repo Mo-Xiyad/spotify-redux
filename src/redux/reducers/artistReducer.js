@@ -3,7 +3,7 @@ import {
   FETCH_FAILED,
   GET_ARTIST_CONTENT,
   GET_ARTIST_DATA,
-} from "../actions/artistAction.js";
+} from "../actions";
 import { initialState } from "../store/index.js";
 
 const artistReducer = (state = initialState.specificArtist, action) => {

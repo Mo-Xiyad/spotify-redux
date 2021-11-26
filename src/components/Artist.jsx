@@ -4,7 +4,7 @@ import { Row, Col, Spinner } from "react-bootstrap";
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { connect } from "react-redux";
-import { getSelectedArtistInfo } from "../redux/actions/artistAction";
+import { getSelectedArtistInfo } from "../redux/actions";
 
 const mapStateToProps = (state) => ({
   artist: state.specificArtist.artistProfile,
