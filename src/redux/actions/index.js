@@ -3,11 +3,6 @@ export const GET_ALL_SONGS = "GET_ALL_SONGS";
 const SET_SEARCH = "SET_SEARCH"
 
 
-//headers are consistent and needed for fetching
-let headers = new Headers({
-    "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-    "X-RapidAPI-Key": "222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20",
-  });
 
 
 
@@ -20,7 +15,10 @@ try {
         string,
       {
         method: "GET",
-        headers,
+        headers: new Headers({
+            "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+            "X-RapidAPI-Key": "222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20",
+          }),
       }
     )
     if (response.ok){
@@ -38,3 +36,37 @@ try {
   }
 }
 }
+
+
+export const setDefaultHome = (artistName, category) => {
+    return async (dispatch) => {
+        console.log(category)
+        try {
+          let response = await fetch(
+            "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
+              artistName,
+            {
+              method: "GET",
+              headers: new Headers({
+                "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+                "X-RapidAPI-Key":
+                  "9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0",
+              }),
+            }
+          );
+          let result = await response.json();
+          let songInfo = result.data;
+          dispatch({
+            type: category,
+            payload: songInfo[0],
+        })
+        } catch (err) {
+          console.log(err);
+        }
+      };
+    
+}
+
+
+
+

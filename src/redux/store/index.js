@@ -11,7 +11,11 @@ const aComposeFunctionThatAlwaysWorks =
 
 export const initialState = {
   mainHomeContent: {
-    content: [],
+    content: {
+      rockSongs:[],
+      popSongs: [],
+      hipHopSongs:[]
+    },
     isLoading: true,
     isError: false,
   },
@@ -36,7 +40,7 @@ export const initialState = {
 };
 
 const bigReducer = combineReducers({
-  home: homeReducer,
+  mainHomeContent: homeReducer,
   search: searchReducer,
   specificAlbumArray: albumReducer,
   specificArtistArray: artistReducer,
