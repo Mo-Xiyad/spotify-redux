@@ -4,21 +4,22 @@ import albumReducer from "../reducers/albumReducer";
 import artistReducer from "../reducers/artistReducer";
 import likesReducer from "../reducers/likesReducer";
 import homeReducer from "../reducers/homeReducer";
-
 import userReducer from "../reducers/user";
-
 import searchReducer from "../reducers/searchReducer";
-
+import selectedReducer from "../reducers/selectedReducer";
 
 const aComposeFunctionThatAlwaysWorks =
   window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const initialState = {
+  current: {
+    selected: {},
+  },
   mainHomeContent: {
     content: {
-      rockSongs:[],
+      rockSongs: [],
       popSongs: [],
-      hipHopSongs:[]
+      hipHopSongs: [],
     },
     isLoading: true,
     isError: false,
@@ -36,11 +37,10 @@ export const initialState = {
     isError: false,
   },
 
-
-    search: {
-      content: [],
-      isError: false,
-      isLoading: true,
+  search: {
+    content: [],
+    isError: false,
+    isLoading: true,
   },
   likes: {
     content: [],
@@ -52,8 +52,7 @@ export const initialState = {
 
 const bigReducer = combineReducers({
   mainHomeContent: homeReducer,
-
-
+  current: selectedReducer,
   search: searchReducer,
   specificAlbumArray: albumReducer,
   specificArtist: artistReducer,

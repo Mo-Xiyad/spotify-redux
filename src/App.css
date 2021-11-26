@@ -156,7 +156,8 @@ ul {
 }
 
 .imgLinks a img:hover {
-  filter: brightness(50%);
+  /* filter: brightness(50%); */
+  /* opacity: 0.5; */
 }
 
 #rock,
@@ -231,13 +232,33 @@ ul {
   width: 200px;
 }
 
-
-.sidebar-liked{
+.sidebar-liked {
   font-size: 20px;
 }
 
-.like-heart{
-  font-size: 20px;
+.like-heart {
+  font-size: 30px;
   cursor: pointer;
-  display: flex;
+  position: absolute;
+  top: 60%;
+  left: 70%;
+  opacity: 0;
+  color: rgb(255, 108, 108);
+  background-color: transparent;
+}
+
+.show-like-heart {
+  opacity: 1;
+  color: rgb(255, 108, 108);
+}
+
+.text-download {
+  font-size: 1.2rem;
+  color: white;
+  margin-left: 10px;
+}
+
+.hr-styled {
+  background: white;
+  margin-left: 30px;
 }

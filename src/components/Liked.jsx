@@ -1,35 +1,35 @@
 import { connect } from "react-redux";
 import { likeOrUnlike } from "../redux/actions";
 
-
 const mapStateToProps = (state) => ({
-    likedSongs: state.likes.content,
-  });
-  
-  const mapDispatchToProps = (dispatch) => ({
-    setLike: (element, dispatchName) => {
-      dispatch(likeOrUnlike(element, dispatchName));
-    },
-  });
+  likedSongs: state.likes.content,
+  likedLength: state.likes.content.length,
+});
 
-const Liked = ({likedSongs, setLike }) => {
+const mapDispatchToProps = (dispatch) => ({
+  setLike: (element, dispatchName) => {
+    dispatch(likeOrUnlike(element, dispatchName));
+  },
+});
 
-    const toggleLike = (element) => {
-        if (likedSongs.filter((el) => el.id === element.id).length < 1) {
-          setLike(element, "LIKE");
-        } else {
-          setLike(element, "REMOVE_LIKE");
-        }
-      };
+const Liked = ({ likedSongs, setLike }) => {
+  const toggleLike = (element) => {
+    if (likedSongs.filter((el) => el.id === element.id).length < 1) {
+      setLike(element, "LIKE");
+    } else {
+      setLike(element, "REMOVE_LIKE");
+    }
+  };
 
+  return (
+    <ul id="scrollable-section">
+      {likedSongs.map((liked) => (
+        <a href>
+          <li>{liked.title}</li>
+        </a>
+      ))}
+    </ul>
+  );
+};
 
-
-return(
-    <>
-
-    </>
-)
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Liked)
+export default connect(mapStateToProps, mapDispatchToProps)(Liked);

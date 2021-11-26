@@ -141,6 +141,14 @@ export const likeOrUnlike = (element, dispatchName) => {
     });
   };
 };
+export const setSelectedTrack = (element) => {
+  return async (dispatch) => {
+    dispatch({
+      type: "SET_SELECTED_TRACK",
+      payload: element,
+    });
+  };
+};
 // Artist Actions Functions below
 export const getSelectedArtistInfo = (artistId) => {
   return async (dispatch) => {

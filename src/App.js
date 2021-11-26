@@ -17,48 +17,50 @@ let headers = new Headers({
 });
 
 const mapStateToProps = (state) => ({
-  searchArray : state.search.content
-})
-
-//setJobs takes a url 
-const mapDispatchToProps = (dispatch) => ({
-  searchForQuery: (string) => {
-    dispatch(fetchSearch(string))
-  }
+  searchArray: state.search.content,
+  userName: state.user.name,
 });
 
+//setJobs takes a url
+const mapDispatchToProps = (dispatch) => ({
+  searchForQuery: (string) => {
+    dispatch(fetchSearch(string));
+  },
+});
 
-const App = ({searchForQuery}) => {
- 
-
+const App = ({ searchForQuery, userName }) => {
   const [searchResults, setSearchResults] = useState([]);
 
   const search = async (string) => {
     if (string.length > 2) {
-      searchForQuery(string)
+      searchForQuery(string);
     }
   };
 
-    return (
-      <Router>
-        <div className="container-fluid">
-          <Row>
-
+  return (
+    <Router>
+      <div className="container-fluid">
+        <Row>
+          {userName ? (
+            <>
+              <Route
+                path="/"
+                exact
+                render={() => <Home searchResults={searchResults} />}
+              />
+              <Route path="/artist/:id" component={Artist} />
+              <Route path="/album/:id" component={Album} />
+              <Route path="/liked" component={Liked} />{" "}
+              <Sidebar search={search} />
+            </>
+          ) : (
             <Sidebar search={search} />
-            <Route
-              path="/"
-              exact
-              render={() => <Home searchResults={searchResults} />}
-            />
-            <Route path="/artist/:id" component={Artist} />
-            <Route path="/album/:id" component={Album} />
-            <Route path="/liked" component={Liked} />
-
-          </Row>
-        </div>
-        <Player />
-      </Router>
-    );
-}
+          )}
+        </Row>
+      </div>
+      <Player />
+    </Router>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

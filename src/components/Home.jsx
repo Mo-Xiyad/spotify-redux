@@ -40,6 +40,10 @@ const Home = ({
     "oasis",
     "thewho",
     "bonjovi",
+    "AC/DC",
+    "sabbath",
+    "nirvana",
+    "doors",
   ];
 
   let popArtists = [
@@ -48,85 +52,77 @@ const Home = ({
     "onerepublic",
     "coldplay",
     "katyperry",
+    "bieber",
+    "adele",
+    "rihanna",
   ];
 
-  let hipHopArtists = ["eminem", "snoopdogg", "lilwayne", "drake", "kanyewest"];
-
-  // const handleArtist = async (artistName, category) => {
-  //   try {
-  //     let response = await fetch(
-  //       "https://striveschool-api.herokuapp.com/api/deezer/search?q=" +
-  //         artistName,
-  //       {
-  //         method: "GET",
-  //         headers: new Headers({
-  //           "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
-  //           "X-RapidAPI-Key":
-  //             "9d408f0366mshab3b0fd8e5ecdf7p1b09f2jsne682a1797fa0",
-  //         }),
-  //       }
-  //     );
-  //     let result = await response.json();
-  //     let songInfo = result.data;
-  //     [category]([...category,songInfo[0]])
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
+  let hipHopArtists = [
+    "eminem",
+    "snoopdogg",
+    "lilwayne",
+    "drake",
+    "kanyewest",
+    "dre",
+    "drake",
+    "outkast",
+  ];
 
   const setHome = async () => {
-    if (rockSongs.length < 4 && popSongs.length < 4 && hipHopSongs.length < 4){
-    let rockRandomArtists = [];
-    let popRandomArtists = [];
-    let hipHopRandomArtists = [];
-    console.log("START OF FUNCTION");
+    if (rockSongs.length < 4 && popSongs.length < 4 && hipHopSongs.length < 4) {
+      let rockRandomArtists = [];
+      let popRandomArtists = [];
+      let hipHopRandomArtists = [];
+      console.log("START OF FUNCTION");
 
-    while (rockRandomArtists.length < 4) {
-      let artist = rockArtists[Math.floor(Math.random() * rockArtists.length)];
-      if (!rockRandomArtists.includes(artist)) {
-        rockRandomArtists.push(artist);
+      while (rockRandomArtists.length < 1) {
+        let artist =
+          rockArtists[Math.floor(Math.random() * rockArtists.length)];
+        if (!rockRandomArtists.includes(artist)) {
+          rockRandomArtists.push(artist);
+        }
+      }
+
+      while (popRandomArtists.length < 1) {
+        let artist = popArtists[Math.floor(Math.random() * popArtists.length)];
+        if (!popRandomArtists.includes(artist)) {
+          popRandomArtists.push(artist);
+        }
+      }
+
+      while (hipHopRandomArtists.length < 1) {
+        let artist =
+          hipHopArtists[Math.floor(Math.random() * hipHopArtists.length)];
+        if (!hipHopRandomArtists.includes(artist)) {
+          hipHopRandomArtists.push(artist);
+        }
+      }
+      if (rockSongs.length > 4) {
+      } else {
+        for (let j = 0; j < rockRandomArtists.length; j++)
+          setFreshHome(rockRandomArtists[j], "SET_ROCK_SONGS");
+      }
+      if (popSongs.length > 4) {
+      } else {
+        for (let k = 0; k < popRandomArtists.length; k++)
+          setFreshHome(popRandomArtists[k], "SET_POP_SONGS");
+      }
+      if (hipHopSongs.length > 4) {
+      } else {
+        for (let l = 0; l < hipHopRandomArtists.length; l++)
+          setFreshHome(hipHopRandomArtists[l], "SET_HIPHOP_SONGS");
+        console.log("finish function");
       }
     }
+  };
 
-    while (popRandomArtists.length < 4) {
-      let artist = popArtists[Math.floor(Math.random() * popArtists.length)];
-      if (!popRandomArtists.includes(artist)) {
-        popRandomArtists.push(artist);
-      }
-    }
-
-    while (hipHopRandomArtists.length < 4) {
-      let artist =
-        hipHopArtists[Math.floor(Math.random() * hipHopArtists.length)];
-      if (!hipHopRandomArtists.includes(artist)) {
-        hipHopRandomArtists.push(artist);
-      }
-    }
-    if (rockSongs.length > 4){}else{
-    for (let j = 0; j < rockRandomArtists.length; j++)
-      setFreshHome(rockRandomArtists[j], "SET_ROCK_SONGS");
-    }
-    if (popSongs.length > 4){}else{
- for (let k = 0; k < popRandomArtists.length; k++)
-      setFreshHome(popRandomArtists[k], "SET_POP_SONGS");
-    }
-    if (hipHopSongs.length > 4){}else{
- for (let l = 0; l < hipHopRandomArtists.length; l++)
-      setFreshHome(hipHopRandomArtists[l], "SET_HIPHOP_SONGS");
-    console.log("finish function");
-    }
-  }};
-
-  const toggleLike =(element)=> {
- 
-    if (likedSongs.filter(el => el.id === element.id).length < 1 ) {
-        setLike(element, "LIKE")
+  const toggleLike = (element) => {
+    if (likedSongs.filter((el) => el.id === element.id).length < 1) {
+      setLike(element, "LIKE");
     } else {
-        setLike(element, "REMOVE_LIKE" )
+      setLike(element, "REMOVE_LIKE");
     }
- 
-   };
-
+  };
 
   useEffect(() => {
     setHome();
@@ -150,7 +146,11 @@ const Home = ({
               <h2>Search Results</h2>
               <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                 {searchArray.map((song) => (
-                  <AlbumCard song={song} key={song.id} onClick={() => toggleLike(song)} />
+                  <AlbumCard
+                    song={song}
+                    key={song.id}
+                    onClick={() => toggleLike(song)}
+                  />
                 ))}
               </Row>
             </div>
@@ -168,7 +168,11 @@ const Home = ({
                   id="rockSection"
                 >
                   {rockSongs.map((song) => (
-                    <AlbumCard song={song} key={song.id} onClick={() => toggleLike(song)} />
+                    <AlbumCard
+                      song={song}
+                      key={song.id}
+                      onClick={() => toggleLike(song)}
+                    />
                   ))}
                 </Row>
               </div>
