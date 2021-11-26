@@ -101,13 +101,17 @@ const Sidebar = ({ search, searchArray, userName, likedLength }) => {
                       </div>
                     </li>
                   )}
-
-                  <li>
+                  <li className="mt-5">
                     <Link to="/liked" className="nav-item nav-link">
                       <i className="bi bi-heart sidebar-liked"></i>&nbsp;
                       {likedLength} Liked
                     </Link>
                   </li>
+                  {userName && (
+                    <div className="liked-songs-list mt-2">
+                      <Liked />
+                    </div>
+                  )}
                 </ul>
               </div>
             </div>
@@ -118,7 +122,6 @@ const Sidebar = ({ search, searchArray, userName, likedLength }) => {
 
           {userName ? (
             <>
-              <Liked />
               <div>
                 <p className="text-download" style={{ marginLeft: 20 }}>
                   Install App

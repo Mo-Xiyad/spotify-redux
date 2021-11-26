@@ -24,9 +24,9 @@ const Liked = ({ likedSongs, setLike }) => {
   return (
     <ul id="scrollable-section">
       {likedSongs.map((liked) => (
-        <a href>
-          <li>{liked.title}</li>
-        </a>
+        <li className="pt-2">
+          <a href="">{liked.title}</a>
+        </li>
       ))}
     </ul>
   );

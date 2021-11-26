@@ -262,3 +262,24 @@ ul {
   background: white;
   margin-left: 30px;
 }
+
+#scrollable-section {
+  width: 10vw;
+  overflow: hidden;
+  height: 35vh;
+  font-size: 0.75em;
+}
+
+#scrollable-section ul li a {
+  display: block;
+  color: #b3b3b3;
+  padding: 8px 0 8px 16px;
+  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+a:hover {
+  text-decoration: none !important;
+  font-weight: bold;
+}
