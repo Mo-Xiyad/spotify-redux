@@ -1,18 +1,37 @@
 import React from "react";
 
 import { Link, withRouter } from "react-router-dom";
-import MyModal from "./MyModal";
-import { useState } from "react";
 
-const Sidebar = ({ search, location }) => {
+import { useState } from "react";
+import { useParams } from "react-router";
+import { connect } from "react-redux";
+import { fetchSearch } from "../redux/actions/index.js";
+import MyModal from "./MyModal";
+
+
+const mapStateToProps = (state) => ({
+  searchArray : state.search.content
+})
+
+//searchForQuery takes the query as a string 
+const mapDispatchToProps = (dispatch) => ({
+  searchForQuery: (string) => {
+    dispatch(fetchSearch(string))
+  }
+});
+
+const Sidebar = ({search, searchArray}) => {
   const [showModal, setModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
 
-  /*  state = {
-    searchInput: "",
-  }; */
+  
+
+  const params = useParams
+  console.log(params)
 
   return (
+    <>
+
     <div className="col-2">
       <nav
         className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between"
@@ -52,7 +71,9 @@ const Sidebar = ({ search, location }) => {
                     Library
                   </Link>
                 </li>
-                {location.pathname === "/" && (
+
+                {search && (
+
                   <li>
                     <div className="input-group mt-3">
                       <input
@@ -74,7 +95,11 @@ const Sidebar = ({ search, location }) => {
                           className="btn btn-outline-secondary btn-sm"
                           type="button"
                           id="button-addon1"
-                          onClick={() => search(searchInput)}
+
+                          onClick={() =>
+                            search(searchInput)
+                          }
+
                         >
                           GO
                         </button>
@@ -82,15 +107,27 @@ const Sidebar = ({ search, location }) => {
                     </div>
                   </li>
                 )}
+
+                <li>
+                  <Link to="/liked" className="nav-item nav-link">
+                    <i className="bi bi-heart sidebar-liked"></i>&nbsp; liked
+                  </Link>
+                </li>
+
               </ul>
             </div>
           </div>
         </div>
+
         {showModal && <MyModal /* username={username}  */ />}
+
+
+
         <div className="nav-btn">
           <button className="btn" id="signup-btn" type="button">
             Sign Up
           </button>
+
           <button
             className="btn"
             id="login-btn"
@@ -105,7 +142,10 @@ const Sidebar = ({ search, location }) => {
         </div>
       </nav>
     </div>
+
+    </>
+
   );
 };
 
-export default withRouter(Sidebar);
+export default connect(mapStateToProps,mapDispatchToProps)(Sidebar);

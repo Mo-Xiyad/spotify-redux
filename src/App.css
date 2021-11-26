@@ -230,3 +230,14 @@ ul {
 .mainPage img {
   width: 200px;
 }
+
+
+.sidebar-liked{
+  font-size: 20px;
+}
+
+.like-heart{
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+}
