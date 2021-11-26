@@ -29,11 +29,14 @@ export const initialState = {
     isLoading: true,
     isError: false,
   },
-  specificArtistArray: {
+  specificArtist: {
+    artistProfile: {},
     content: [],
     isLoading: true,
     isError: false,
   },
+
+
     search: {
       content: [],
       isError: false,
@@ -49,9 +52,11 @@ export const initialState = {
 
 const bigReducer = combineReducers({
   mainHomeContent: homeReducer,
+
+
   search: searchReducer,
   specificAlbumArray: albumReducer,
-  specificArtistArray: artistReducer,
+  specificArtist: artistReducer,
   likes: likesReducer,
   user: userReducer,
 });
