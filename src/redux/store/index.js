@@ -19,25 +19,21 @@ export const initialState = {
     isLoading: true,
     isError: false,
   },
-  specificArtistArray: {
+  specificArtist: {
+    artistProfile: {},
     content: [],
     isLoading: true,
     isError: false,
   },
-  //   search: {
-  //     content: [],
-  //     isError: false,
-  //     isLoading: true,
-  // },
   likes: {
     content: [],
   },
 };
 
 const bigReducer = combineReducers({
-  home: homeReducer,
+  mainHomeContent: homeReducer,
   specificAlbumArray: albumReducer,
-  specificArtistArray: artistReducer,
+  specificArtist: artistReducer,
   likes: likesReducer,
 });
 
