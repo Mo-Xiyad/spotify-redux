@@ -1,5 +1,6 @@
 import { connect } from "react-redux";
 import { likeOrUnlike } from "../redux/actions";
+import { Link } from "react-router-dom";
 
 const mapStateToProps = (state) => ({
   likedSongs: state.likes.content,
@@ -23,9 +24,11 @@ const Liked = ({ likedSongs, setLike }) => {
 
   return (
     <ul id="scrollable-section">
-      {likedSongs.map((liked) => (
-        <li className="pt-2">
-          <a href="">{liked.title}</a>
+      {likedSongs.map((liked, i) => (
+        <li className="pt-2" key={i}>
+          <Link to={`/album/${liked.album.id}`} className="nav-item nav-link">
+            {liked.title}
+          </Link>
         </li>
       ))}
     </ul>

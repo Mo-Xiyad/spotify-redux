@@ -1,9 +1,6 @@
 import React from "react";
-
-import { Link, withRouter } from "react-router-dom";
-
+import { Link } from "react-router-dom";
 import { useState } from "react";
-import { useParams } from "react-router";
 import { connect } from "react-redux";
 import { fetchSearch } from "../redux/actions/index.js";
 import MyModal from "./MyModal";
@@ -25,9 +22,6 @@ const mapDispatchToProps = (dispatch) => ({
 const Sidebar = ({ search, searchArray, userName, likedLength }) => {
   const [showModal, setModal] = useState(false);
   const [searchInput, setSearchInput] = useState("");
-
-  const params = useParams;
-  console.log(params);
 
   return (
     <>
@@ -102,10 +96,8 @@ const Sidebar = ({ search, searchArray, userName, likedLength }) => {
                     </li>
                   )}
                   <li className="mt-5">
-                    <Link to="/liked" className="nav-item nav-link">
-                      <i className="bi bi-heart sidebar-liked"></i>&nbsp;
-                      {likedLength} Liked
-                    </Link>
+                    <i className="bi bi-heart sidebar-liked"></i>&nbsp;
+                    <span id="like-bar-text">{likedLength} Liked</span>
                   </li>
                   {userName && (
                     <div className="liked-songs-list mt-2">
