@@ -1,0 +1,2 @@
+export const FETCH_DATA_WITH_ID = "FETCH_DATA_WITH_ID";
+export const GET_ALL_SONGS = "GET_ALL_SONGS";
