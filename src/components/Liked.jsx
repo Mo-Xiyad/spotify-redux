@@ -25,7 +25,7 @@ const Liked = ({ likedSongs, setLike }) => {
   return (
     <ul id="scrollable-section">
       {likedSongs.map((liked, i) => (
-        <li className="pt-2" key={i}>
+        <li className="" key={i}>
           <Link to={`/album/${liked.album.id}`} className="nav-item nav-link">
             {liked.title}
           </Link>
