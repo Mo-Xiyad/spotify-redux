@@ -1,10 +1,12 @@
 import React from "react";
+
 import { Link, withRouter } from "react-router-dom";
+
 import { useState } from "react";
 import { useParams } from "react-router";
 import { connect } from "react-redux";
 import { fetchSearch } from "../redux/actions/index.js";
-
+import MyModal from "./MyModal";
 
 
 const mapStateToProps = (state) => ({
@@ -19,13 +21,17 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 const Sidebar = ({search, searchArray}) => {
-  const [searchInput, setSearchInput] = useState();
+  const [showModal, setModal] = useState(false);
+  const [searchInput, setSearchInput] = useState("");
+
+  
 
   const params = useParams
   console.log(params)
 
   return (
     <>
+
     <div className="col-2">
       <nav
         className="navbar navbar-expand-md navbar-white bg-navbar fixed-left justify-content-between"
@@ -65,7 +71,9 @@ const Sidebar = ({search, searchArray}) => {
                     Library
                   </Link>
                 </li>
+
                 {search && (
+
                   <li>
                     <div className="input-group mt-3">
                       <input
@@ -87,9 +95,11 @@ const Sidebar = ({search, searchArray}) => {
                           className="btn btn-outline-secondary btn-sm"
                           type="button"
                           id="button-addon1"
+
                           onClick={() =>
                             search(searchInput)
                           }
+
                         >
                           GO
                         </button>
@@ -97,28 +107,44 @@ const Sidebar = ({search, searchArray}) => {
                     </div>
                   </li>
                 )}
+
                 <li>
                   <Link to="/liked" className="nav-item nav-link">
                     <i className="bi bi-heart sidebar-liked"></i>&nbsp; liked
                   </Link>
                 </li>
+
               </ul>
             </div>
           </div>
         </div>
 
+        {showModal && <MyModal /* username={username}  */ />}
+
+
+
         <div className="nav-btn">
           <button className="btn" id="signup-btn" type="button">
             Sign Up
           </button>
-          <button className="btn" id="login-btn" type="button">
+
+          <button
+            className="btn"
+            id="login-btn"
+            type="button"
+            onClick={() => {
+              setModal(true);
+            }}
+          >
             Login
           </button>
           <a href="/">Cookie Policy</a> |<a href="/"> Privacy</a>
         </div>
       </nav>
     </div>
+
     </>
+
   );
 };
 

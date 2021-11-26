@@ -43,6 +43,7 @@ const App = ({searchForQuery}) => {
       <Router>
         <div className="container-fluid">
           <Row>
+
             <Sidebar search={search} />
             <Route
               path="/"
@@ -52,6 +53,7 @@ const App = ({searchForQuery}) => {
             <Route path="/artist/:id" component={Artist} />
             <Route path="/album/:id" component={Album} />
             <Route path="/liked" component={Liked} />
+
           </Row>
         </div>
         <Player />
