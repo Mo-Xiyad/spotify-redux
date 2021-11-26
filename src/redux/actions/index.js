@@ -2,6 +2,7 @@ export const FETCH_DATA_WITH_ID = "FETCH_DATA_WITH_ID";
 export const GET_ALL_SONGS = "GET_ALL_SONGS";
 export const GET_ALBUM_ERROR = "GET_ALBUM_ERROR";
 export const TOGGLE_LOADER = "TOGGLE_LOADER";
+export const SET_USERNAME = "SET_USERNAME";
 
 export const getAlbumAction = (albumId) => {
   return async (dispatch) => {
