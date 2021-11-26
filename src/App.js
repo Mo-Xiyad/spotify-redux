@@ -8,18 +8,31 @@ import { Row } from "react-bootstrap";
 import Artist from "./components/Artist";
 import Album from "./components/Album";
 import { connect } from "react-redux";
-
+import { useState, useEffect } from "react";
+import { fetchSearch } from "./redux/actions";
 let headers = new Headers({
   "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
   "X-RapidAPI-Key": "222902beabmshb95a65b737cead6p1f3ac9jsn23ced94c0d20",
 });
 
-class App extends React.Component {
-  state = {
-    searchResults: [],
-  };
+const mapStateToProps = (state) => ({
+  searchArray : state.search.content
+})
 
-  search = async (string) => {
+//setJobs takes a url 
+const mapDispatchToProps = (dispatch) => ({
+  searchForQuery: (string) => {
+    dispatch(fetchSearch(string))
+  }
+});
+
+
+const App = ({searchForQuery}) => {
+ 
+
+  const [searchResults, setSearchResults] = useState([]);
+
+  const search = async (string) => {
     if (string.length > 2) {
       try {
         let response = await fetch(
@@ -33,26 +46,22 @@ class App extends React.Component {
 
         let result = await response.json();
         let songs = result.data;
-
-        this.setState({
-          searchResults: songs,
-        });
+          setSearchResults(songs)
       } catch (err) {
         console.log(err);
       }
     }
   };
 
-  render() {
     return (
       <Router>
         <div className="container-fluid">
           <Row>
-            <Sidebar search={this.search} />
+            <Sidebar search={search} />
             <Route
               path="/"
               exact
-              render={() => <Home searchResults={this.state.searchResults} />}
+              render={() => <Home searchResults={searchResults} />}
             />
             <Route path="/artist/:id" component={Artist} />
             <Route path="/album/:id" component={Album} />
@@ -61,7 +70,6 @@ class App extends React.Component {
         <Player />
       </Router>
     );
-  }
 }
 
 export default App;
