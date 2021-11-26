@@ -96,16 +96,24 @@ const Home = ({
         hipHopRandomArtists.push(artist);
       }
     }
-
+    if (rockSongs.length > 4){}else{
     for (let j = 0; j < rockRandomArtists.length; j++)
       setFreshHome(rockRandomArtists[j], "SET_ROCK_SONGS");
-
-    for (let k = 0; k < popRandomArtists.length; k++)
+    }
+    if (popSongs.length > 4){}else{
+ for (let k = 0; k < popRandomArtists.length; k++)
       setFreshHome(popRandomArtists[k], "SET_POP_SONGS");
-
-    for (let l = 0; l < hipHopRandomArtists.length; l++)
+    }
+    if (hipHopSongs.length > 4){}else{
+ for (let l = 0; l < hipHopRandomArtists.length; l++)
       setFreshHome(hipHopRandomArtists[l], "SET_HIPHOP_SONGS");
     console.log("finish function");
+    }
+
+
+   
+
+   
   }};
 
   useEffect(() => {
