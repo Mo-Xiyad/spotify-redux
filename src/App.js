@@ -54,7 +54,12 @@ const App = ({ searchForQuery, userName }) => {
               <Sidebar search={search} />
             </>
           ) : (
-            <Sidebar search={search} />
+            <>
+              <Sidebar search={search} />
+              <div className="container-fluid text-center text-light">
+                <h1>sign in</h1>
+              </div>
+            </>
           )}
         </Row>
       </div>
