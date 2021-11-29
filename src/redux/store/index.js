@@ -1,5 +1,7 @@
 import { compose, createStore, applyMiddleware, combineReducers } from "redux";
 import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
 import albumReducer from "../reducers/albumReducer";
 import artistReducer from "../reducers/artistReducer";
 import likesReducer from "../reducers/likesReducer";
@@ -50,6 +52,11 @@ export const initialState = {
   },
 };
 
+const persistConfig = {
+  key: "root",
+  storage,
+};
+
 const bigReducer = combineReducers({
   mainHomeContent: homeReducer,
   current: selectedReducer,
@@ -60,8 +67,12 @@ const bigReducer = combineReducers({
   user: userReducer,
 });
 
-export const configureStore = createStore(
-  bigReducer,
+const persistedReducer = persistReducer(persistConfig, bigReducer);
+
+export const store = createStore(
+  persistedReducer,
   initialState,
   aComposeFunctionThatAlwaysWorks(applyMiddleware(thunk))
 );
+
+export const persister = persistStore(store);
