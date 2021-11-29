@@ -1,7 +1,20 @@
 import React from "react";
 import { Row } from "react-bootstrap";
+import { setSelectedTrack } from "../redux/actions";
+import { connect } from "react-redux";
 
-const Player = () => (
+const mapStateToProps = (state) => ({
+  likedSongs: state.likes.content,
+  selectedSong: state.current.selected,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  setSelected: (track) => {
+    dispatch(setSelectedTrack(track));
+  },
+});
+
+const Player = ({ selectedSong }) => (
   <div className="container-fluid fixed-bottom bg-container pt-1">
     <Row>
       <div className="col-lg-10 offset-lg-2">
@@ -44,4 +57,4 @@ const Player = () => (
   </div>
 );
 
-export default Player;
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
