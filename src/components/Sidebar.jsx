@@ -68,7 +68,7 @@ const Sidebar = ({ search, searchArray, userName, likedLength }) => {
                   {search && (
                     <li>
                       <div className="input-group mt-3">
-                        <input
+                        {/*    <input
                           type="text"
                           className="form-control mb-2"
                           id="searchField"
@@ -78,19 +78,19 @@ const Sidebar = ({ search, searchArray, userName, likedLength }) => {
                           onChange={(event) =>
                             setSearchInput(event.currentTarget.value)
                           }
-                        />
+                        /> */}
                         <div
                           className="input-group-append"
                           style={{ marginBottom: "4%" }}
                         >
-                          <button
+                          {/* <button
                             className="btn btn-outline-secondary btn-sm"
                             type="button"
                             id="button-addon1"
                             onClick={() => search(searchInput)}
                           >
                             GO
-                          </button>
+                          </button> */}
                         </div>
                       </div>
                     </li>

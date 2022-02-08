@@ -75,6 +75,7 @@ const Artist = ({ fetchArtistData, artist, songs, isLoading }) => {
               </div>
               <div className="pt-5 mb-5">
                 <Row className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
+                 
                   {songs?.map((song) => (
                     <AlbumCard song={song} key={song.id} />
                   ))}
