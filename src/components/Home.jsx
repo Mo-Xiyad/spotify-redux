@@ -148,7 +148,7 @@ const Home = ({
                 {searchArray.map((song) => (
                   <AlbumCard
                     song={song}
-                    key={song.id}
+                    key={song?.id}
                     onClick={() => toggleLike(song)}
                   />
                 ))}
@@ -170,7 +170,7 @@ const Home = ({
                   {rockSongs.map((song) => (
                     <AlbumCard
                       song={song}
-                      key={song.id}
+                      key={song?.id}
                       onClick={() => toggleLike(song)}
                     />
                   ))}
@@ -186,8 +186,8 @@ const Home = ({
                   className="row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
                   id="popSection"
                 >
-                  {popSongs.map((song) => (
-                    <AlbumCard song={song} key={song.id} />
+                  {popSongs?.map((song) => (
+                    <AlbumCard song={song} key={song?.id} />
                   ))}
                 </Row>
               </div>
@@ -202,7 +202,7 @@ const Home = ({
                   id="hipHopSection"
                 >
                   {hipHopSongs.map((song) => (
-                    <AlbumCard song={song} key={song.id} />
+                    <AlbumCard song={song} key={song?.id} />
                   ))}
                 </Row>
               </div>
